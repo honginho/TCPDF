@@ -15569,7 +15569,9 @@ class TCPDF {
 			if ($v['t']) {
 				// draw a vertical bar
 				$ypos = $y + $vpadding + ($v['p'] * $barh / $arrcode['maxh']);
-				$this->Rect($xpos, $ypos, $bw, ($v['h'] * $barh / $arrcode['maxh']), 'F', array(), $style['fgcolor']);
+				// $this->Rect($xpos, $ypos, $bw, ($v['h'] * $barh / $arrcode['maxh']), 'F', array(), $style['fgcolor']);
+				// reduce barcode width, because string of CODE39 too long
+				$this->Rect($xpos, $ypos + ($style['bwr'] / 2), $bw - ($style['bwr'] / 2), ($v['h'] * $barh / $arrcode['maxh']), 'F', array(), $style['fgcolor']);
 			}
 			$xpos += $bw;
 		}
